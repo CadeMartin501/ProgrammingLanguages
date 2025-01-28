@@ -1,5 +1,5 @@
 def main():
-    with open("movement.txt") as input_file: #Instead of Scanner
+    with open("movement") as input_file: #Instead of Scanner
         direction = "north"
         horizontal = 0
         vertical = 0
