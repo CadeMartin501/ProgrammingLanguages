@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-public class 2016AdventOfCodeDay1 {
+public class AdventOfCodeDay1 {
     public static void main(String[] args) throws FileNotFoundException {
         Scanner input = new Scanner(new File("movement"));
         String direction = "north";
