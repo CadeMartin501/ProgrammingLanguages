@@ -61,9 +61,9 @@ let rec max(xs: int list): int =
 
 let result: int = max(count_up_to(100))
 
-let rec max(xs: int list): int option =
+(* let rec max(xs: int list): int option =
   if xs = [] then
       None
   else if List.tl xs = [] then
       Some(List.hd xs)
-  else ... (* to be continued... *)
+  else ... to be continued... *)
