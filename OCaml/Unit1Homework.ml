@@ -86,12 +86,12 @@ let rec month_range((day1: int), (day2 : int)) : int list =
     if day1 > day2 then 
         []
     else
-        let rec range a b =
+        let rec range ((a : int), (b : int)) =
             if a > b then
                 []
             else
-                a :: range (a+1) b
-            in range day1 day2
+                a :: range (a+1, b)
+            in range (day1, day2)
         
 
 (* 11 *)
