@@ -4,11 +4,6 @@ let snd3 (_,x,_) = x (* gets the second element of a triple *)
 let thd3 (_,_,x) = x (* gets the third element of a triple *)
 (* DAY MONTH YEAR *)
 
-(**
- * TODO: Complete the 11 function bindings described in the assignment.  For the first (2), 
- * we have given you the correct first line and an incorrect function body.
- *)
-
  (* 1 *)
  (* true if date1 is older than date2 *)
 let is_older ((date1 : int * int * int), (date2 : int * int * int)): bool =
@@ -26,7 +21,7 @@ let is_older ((date1 : int * int * int), (date2 : int * int * int)): bool =
         true
     else
         false
-(* Comparing days^^^ *)
+(* Comparing days^^^*)
 
 (* 2 *)
 let rec number_in_month ((dates : (int * int * int) list), (month : int)): int =
@@ -74,27 +69,39 @@ let string_of_date (date: int * int * int) =
 
 (* 8 *)
 let rec number_before_reaching_sum((sum: int), (nums : int list)) : int =
-    let current_sum = List.hd nums in
-        if current_sum >= sum then
-            0
-        else 
-            1
+    if List.hd nums >= sum then
+        1
+    else
+        1 + number_before_reaching_sum(sum-List.hd nums, List.tl nums)
 
 
 (* 9 *)
 let what_month (day: int) : int = 
-    let days = [31; 59; 90; 120; 151; 181; 212; 243; 273; 304; 334; 365] in
+    let days = [31; 28; 31; 30; 31; 30; 31; 31; 30; 31; 30; 31] in
         number_before_reaching_sum(day, days)
 
 
 (* 10 *)
-let month_range((day1: int), (day2 : int)) : int list =
-[]
+let rec month_range((day1: int), (day2 : int)) : int list =
+    if day1 > day2 then 
+        []
+    else
+        let rec range a b =
+            if a > b then
+                []
+            else
+                a :: range (a+1) b
+            in range day1 day2
+        
 
 (* 11 *)
-let cumulative_sum (nums : int list) : int list =
-[]
-
-
-let cumulative_sum_helper((nums : int list), (sum : int)) : int =
-0
+let rec cumulative_sum (nums : int list) : int list =
+    let rec helper ((reverse : int list), (sum : int), (nums : int list)) = 
+        if List.is_empty nums then 
+            List.rev reverse
+        else
+            let x = List.hd nums in
+            let xs = List.tl nums in
+            helper(((sum + x) :: reverse), (sum + x), xs)
+        in
+        helper ([], 0, nums)
