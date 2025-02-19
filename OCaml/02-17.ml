@@ -23,6 +23,7 @@ let rec generate n =
 let rec eval_and (xs: boolval list) : boolval=
     match xs with 
     (* Base cases *)
+    |[] -> Unknown
     |Known(false) :: xs' -> Known(false)
     |_ :: Known(false) :: [] -> Known(false)
     |Unknown :: _:: [] -> Unknown
