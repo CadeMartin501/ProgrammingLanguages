@@ -1,4 +1,4 @@
-(* map and filter *)
+(* map, filter, and fold *)
 
 let rec map(f, xs) =
   match xs with
