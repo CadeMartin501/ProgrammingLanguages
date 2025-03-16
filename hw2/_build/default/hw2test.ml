@@ -27,7 +27,7 @@ open Json
     [Object [("n", Num 2.); ("b", True)]; 
      Object [("n", Num 1.); ("b", True)]]
 
-(** let test2 = concat_with (";", ["1"; "2"]) = "1;2" **)
+let test2 = concat_with (";", ["1"; "2"]) = "1;2"
 
 (** let test3 = quote_string "hello" = "\"hello\"" **)
 

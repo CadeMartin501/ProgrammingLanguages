@@ -34,15 +34,18 @@ let make_silly_json i =
     match i with 
     | 0 -> []
     | _ -> Object [("n", Num (float_of_int i)); ("b", True)]::make_silly_json' (i-1)
-  in Array(make_silly_json' i )
+  in Array(make_silly_json' i)
 
 (* 2 *)
 let rec concat_with (sep, ss) =
-  failwith "Need to implement: concat_with"
+  match ss with
+  |x::[] -> x
+  |x::xs' -> x^sep^concat_with(sep,xs')
+  |[] -> ""
 
 (* 3 *)
 let quote_string s =
-  failwith "Need to implement: quote_string"
+  "\""^s^"\""
 
 
 (* 4 *)
@@ -50,19 +53,27 @@ let rec string_of_json j =
   failwith "Need to implement: string_of_json"
 
 (* 5 *)
-let rec take (n,xs) = 
-  failwith "Need to implement: take"
+let rec take (n,xs) =
+    match (n,xs) with
+    |(0,_) -> []
+    |(_,[]) -> []
+    |(n,x ::xs') -> x :: take(n-1, xs')
 
 (* 6 *)
 let rec firsts xs = 
-  failwith "Need to implement: firsts"
+  match xs with 
+  |[] -> []
+  |x::xs' -> fst x :: firsts(xs')
 
 (* 7 *)
-(* write your comment here *)
+(* They both return the same because you either get the first of the pairs then the first n of them, or the first n terms, then the first of each pair, so the two functions are commutative *)
+
 
 (* 8 *)
 let rec assoc (k, xs) =
-  failwith "Need to implement: assoc"
+  match xs with
+  |[] -> None
+  |x:: xs' -> if fst(x) = k then Some(snd(x)) else assoc(k, xs')
 
 (* 9 *)
 let dot (j, f) = 
@@ -78,7 +89,7 @@ let one_fields j =
 
 (* 12 *)
 let no_repeats xs = 
-  failwith "Need to implement: no_repeats"
+  xs = dedup(xs)
 
 (* 13 *)
 let rec recursive_no_field_repeats j = 
