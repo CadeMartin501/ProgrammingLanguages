@@ -50,7 +50,23 @@ let quote_string s =
 
 (* 4 *)
 let rec string_of_json j =
-  failwith "Need to implement: string_of_json"
+  match j with
+  |Num(x) -> json_string_of_float x
+  |String(str) -> quote_string str
+  |False -> "false"
+  |True -> "true"
+  |Null -> "null"
+  |Array(xs) -> let rec array_helper xs =
+    match xs with
+    |x::xs' -> string_of_json x :: array_helper xs'
+    |[] -> [] in
+    "[" ^ concat_with(", ",array_helper xs)^"]"
+  |Object (xs) -> 
+    let rec object_helper xs =
+      match xs with
+      |(a,b)::xs' -> (quote_string(a)^" : "^string_of_json(b))::object_helper(xs')
+      |[] -> [] in
+      "{"^concat_with(", ",object_helper xs)^"}"
 
 (* 5 *)
 let rec take (n,xs) =
@@ -77,7 +93,11 @@ let rec assoc (k, xs) =
 
 (* 9 *)
 let dot (j, f) = 
-  failwith "Need to implement: dot"
+  match j with
+  |String(str) ->  if str=f then Some(str) else None
+  |Array(xs) ->
+  |Object(a,b) ->
+  |_ -> Some (False)
 
 (* 10 *)
 let rec dots (j, fs) =

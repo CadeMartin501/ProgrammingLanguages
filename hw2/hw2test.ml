@@ -31,7 +31,7 @@ let test2 = concat_with (";", ["1"; "2"]) = "1;2"
 
 let test3 = quote_string "hello" = "\"hello\"" 
 
-(** let test4 = string_of_json json_obj = "{\"foo\" : 3.14159, \"bar\" : [1, \"world\", null], \"ok\" : true}" **)
+let test4 = string_of_json json_obj = "{\"foo\" : 3.14159, \"bar\" : [1, \"world\", null], \"ok\" : true}"
 
 let test5 = take (2, [4; 5; 6; 7]) = [4; 5] 
 
