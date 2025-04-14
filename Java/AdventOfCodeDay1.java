@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class AdventOfCodeDay1 {
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner input = new Scanner(new File("movement"));
+        Scanner input = new Scanner(new File("Java/movement"));
         String direction = "north";
         int horizontal = 0;
         int vertical = 0;

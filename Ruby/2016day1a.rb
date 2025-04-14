@@ -3,6 +3,7 @@ input = gets.split(', ')
 direction = 0
 locx = 0
 locy = 0
+locations = Set.new
 
 input.each do |s|
   if s[0] == 'R' then
@@ -14,13 +15,49 @@ input.each do |s|
   distance = s[1..].to_i
   case direction
   when 0
-    locy += distance
+    distance.times do
+      locy += 1
+      if locations.member? [locx, locy] then
+        puts locx.abs + locy.abs
+        exit 0
+      else
+        locations << [locx, locy]
+      end
+    end
+    # locy += distance
   when 1
-    locx += distance
+    distance.times do
+      locx += 1
+      if locations.member? [locx, locy] then
+        puts locx.abs + locy.abs
+        exit 0
+      else
+        locations << [locx, locy]
+      end
+    end
+    # locx += distance
   when 2
-    locy -= distance
+    distance.times do
+      locy -= 1
+      if locations.member? [locx, locy] then
+        puts locx.abs + locy.abs
+        exit 0
+      else
+        locations << [locx, locy]
+      end
+    end
+    # locy -= distance
   when 3 
-    locx -= distance
+    distance.times do
+      locx -= 1
+      if locations.member? [locx, locy] then
+        puts locx.abs + locy.abs
+        exit 0
+      else
+        locations << [locx, locy]
+      end
+    end
+    # locx -= distance
   end
 end
 
