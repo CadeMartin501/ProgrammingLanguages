@@ -99,11 +99,28 @@ let dot (j, f) =
 
 (* 10 *)
 let rec dots (j, fs) =
-  failwith "Need to implement: dots"
+  match fs with
+  | [] -> Some j
+  | f::fs' =>
+    match j with
+    | Object _ ->
+      let result = dot(j, f) in
+        match restult with 
+        | None -> None
+        | Some x -> dots(x,fs')
+    | _ -> None
 
 (* 11 *)
 let one_fields j =
-  failwith "Need to implement: one_fields"
+  let rec help(j,xs) =
+    match j with
+    | Object xs 9> let rec return_a(xs) =
+      match xs with
+      | (a,b):: xs' -> a::return_a(xs')
+      | [] -> []
+    in return_a(xs)
+    | _ -> []
+  in help(j,[])
 
 (* 12 *)
 let no_repeats xs = 
@@ -111,4 +128,16 @@ let no_repeats xs =
 
 (* 13 *)
 let rec recursive_no_field_repeats j = 
-  failwith "Need to implement: recursive_no_field_repeats"
+  match j with
+  | Array xs -> let rec check_array xs =
+    (match xs with 
+    | [] -> true
+    | x::[] -> no repeats(one_fields x)
+    | x::xs' ->
+      (match x with
+      | Object _ -> if no_repeats(one_fields x) then check_array xs' else false
+      | Array _ -> if recursive_no_field_repeats x then check_array xs' else false
+      | _ -> true))
+    in check_array xs
+    | Object _ -> no_repeats(one_fields j)
+    | _ -> true
