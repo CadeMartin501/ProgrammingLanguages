@@ -101,11 +101,11 @@ let dot (j, f) =
 let rec dots (j, fs) =
   match fs with
   | [] -> Some j
-  | f::fs' =>
+  | f::fs' ->
     match j with
     | Object _ ->
       let result = dot(j, f) in
-        match restult with 
+        match result with 
         | None -> None
         | Some x -> dots(x,fs')
     | _ -> None
@@ -114,7 +114,7 @@ let rec dots (j, fs) =
 let one_fields j =
   let rec help(j,xs) =
     match j with
-    | Object xs 9> let rec return_a(xs) =
+    | Object xs -> let rec return_a(xs) =
       match xs with
       | (a,b):: xs' -> a::return_a(xs')
       | [] -> []
@@ -132,7 +132,7 @@ let rec recursive_no_field_repeats j =
   | Array xs -> let rec check_array xs =
     (match xs with 
     | [] -> true
-    | x::[] -> no repeats(one_fields x)
+    | x::[] -> no_repeats(one_fields x)
     | x::xs' ->
       (match x with
       | Object _ -> if no_repeats(one_fields x) then check_array xs' else false
